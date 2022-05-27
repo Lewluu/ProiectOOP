@@ -16,14 +16,16 @@ namespace ProiectOOP
         private List<SensorValue> _sv_list;
         private PatientCode _selected_patient_code;
         private PumpSensorValues _pump_sv;
-        private int _period;
+        private int _period = 1;
+        private bool _update_grid;
         public DataPresentation()
         {
             InitializeComponent();
 
+            _update_grid = false;
             _selected_patient_code = PatientCode.None;
             _sv_list = new List<SensorValue>(); 
-            _pump_sv = new PumpSensorValues(1);
+            _pump_sv = new PumpSensorValues(_period);
 
             _pump_sv.StartPumping();
             _pump_sv.newSensorValueEvent += new onNewSensorDelegate(onNewSensorHandler);
@@ -44,7 +46,7 @@ namespace ProiectOOP
             this.dataGridView1.Rows[row_id].Cells[2].Value = sv.TimeStampString.ToString();
             this.dataGridView1.Rows[row_id].Cells[3].Value = sv.Value.ToString();
 
-/*            if (_selected_patient_code != PatientCode.None)
+            if (_update_grid)
             {
                 if (sv.PatientCode == _selected_patient_code)
                 {
@@ -54,40 +56,39 @@ namespace ProiectOOP
                 {
                     this.dataGridView1.Rows[row_id].Visible = false;
                 }
-            }*/
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selected_patient_code = (PatientCode)comboBox1.SelectedIndex;
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            _period = Convert.ToInt32(this.textBox1.Text);
-            Console.WriteLine(this.textBox1.Text);
-        }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Console.WriteLine("hello");
-
-            _pump_sv.resetPeriod(_period);
-
-            for (int i = 0; i < this.dataGridView1.RowCount - 1; i++)
+            try
             {
-                if (_selected_patient_code == PatientCode.None)
-                {
-                    this.dataGridView1.Rows[i].Visible = true;
-                }
-                else if (this.dataGridView1.Rows[i].Cells[0].Value.ToString() != _selected_patient_code.ToString())
-                    this.dataGridView1.Rows[i].Visible = false;
+                _period = Convert.ToInt32(this.textBox1.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(_period);
+            try
+            {
+                _pump_sv.resetPeriod(_period);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
-            _pump_sv.resetPeriod(_period);
+            if (_selected_patient_code != PatientCode.None)
+                _update_grid = true;
+            else
+                _update_grid = false;
 
             for (int i = 0; i < this.dataGridView1.RowCount - 1; i++)
             {
