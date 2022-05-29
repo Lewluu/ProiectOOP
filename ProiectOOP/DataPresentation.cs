@@ -45,18 +45,6 @@ namespace ProiectOOP
             this.dataGridView1.Rows[row_id].Cells[1].Value = sv.Type.ToString();
             this.dataGridView1.Rows[row_id].Cells[2].Value = sv.TimeStampString.ToString();
             this.dataGridView1.Rows[row_id].Cells[3].Value = sv.Value.ToString();
-
-            if (_update_grid)
-            {
-                if (sv.PatientCode == _selected_patient_code)
-                {
-                    this.dataGridView1.Rows[row_id].Visible = true;
-                }
-                else
-                {
-                    this.dataGridView1.Rows[row_id].Visible = false;
-                }
-            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,20 +73,7 @@ namespace ProiectOOP
                 Console.WriteLine(ex);
             }
 
-            if (_selected_patient_code != PatientCode.None)
-                _update_grid = true;
-            else
-                _update_grid = false;
-
-            for (int i = 0; i < this.dataGridView1.RowCount - 1; i++)
-            {
-                if (_selected_patient_code == PatientCode.None)
-                {
-                    this.dataGridView1.Rows[i].Visible = true;
-                }
-                else if (this.dataGridView1.Rows[i].Cells[0].Value.ToString() != _selected_patient_code.ToString())
-                    this.dataGridView1.Rows[i].Visible = false;
-            }
+            _pump_sv.setPatient(_selected_patient_code);
         }
     }
 }

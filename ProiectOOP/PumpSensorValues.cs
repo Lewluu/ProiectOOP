@@ -13,6 +13,7 @@ namespace ProiectOOP
         public event onNewSensorDelegate newSensorValueEvent;
         private Timer _timer_base;
         private Random _random;
+        private PatientCode _patient_code = PatientCode.None;
         private PumpSensorValues() { }
         public PumpSensorValues(int periodSecondsBetweenValues)
         {
@@ -35,6 +36,10 @@ namespace ProiectOOP
         public void resetPeriod(int periodSecondsBetweenValues)
         {
             _timer_base.Interval = periodSecondsBetweenValues * 1000;
+        }
+        public void setPatient(PatientCode patientCode)
+        {
+            _patient_code = patientCode;
         }
         private void _timerBaseElapsed(Object sender, ElapsedEventArgs e)
         {
@@ -78,12 +83,20 @@ namespace ProiectOOP
                     break;
             }
 
-            // getting a random patient code
-            int max_patient_code = System.Enum.GetValues(typeof(PatientCode)).GetUpperBound(0);
-            int patient_random = _random.Next(1, max_patient_code + 1);
-            PatientCode sensor_patient_random = (PatientCode)patient_random;
+            PatientCode new_patient_code;
 
-            SensorValue sensor_random = new SensorValue(sensor_patient_random, sensor_type_random, value_random, DateTime.Now);
+            if (_patient_code == PatientCode.None)
+            {
+                // getting a random patient code
+                int max_patient_code = System.Enum.GetValues(typeof(PatientCode)).GetUpperBound(0);
+                int patient_random = _random.Next(1, max_patient_code + 1);
+
+                new_patient_code = (PatientCode)patient_random;
+            }
+            else
+                new_patient_code = _patient_code;
+
+            SensorValue sensor_random = new SensorValue(new_patient_code, sensor_type_random, value_random, DateTime.Now);
 
             // logging to console
             /*VirtualSensorProgram.DisplaySensorValues("New sensor value: ", sensor_random);*/
