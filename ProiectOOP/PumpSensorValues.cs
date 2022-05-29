@@ -13,6 +13,7 @@ namespace ProiectOOP
         public event onNewSensorDelegate newSensorValueEvent;
         private Timer _timer_base;
         private Random _random;
+        private bool _is_pumping = true;
         private PatientCode _patient_code = PatientCode.None;
         private PumpSensorValues() { }
         public PumpSensorValues(int periodSecondsBetweenValues)
@@ -26,11 +27,13 @@ namespace ProiectOOP
         public void StartPumping()
         {
             Console.WriteLine("Started pumping ...");
+            _is_pumping = true;
             _timer_base.Start();
         }
         public void StopPumping()
         {
             Console.WriteLine("Stoped pumping ...");
+            _is_pumping = false;
             _timer_base.Stop();
         }
         public void resetPeriod(int periodSecondsBetweenValues)
@@ -40,6 +43,10 @@ namespace ProiectOOP
         public void setPatient(PatientCode patientCode)
         {
             _patient_code = patientCode;
+        }
+        public bool isPumping()
+        {
+            return _is_pumping;
         }
         private void _timerBaseElapsed(Object sender, ElapsedEventArgs e)
         {

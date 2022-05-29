@@ -34,7 +34,8 @@ namespace ProiectOOP
         private void onNewSensorHandler(SensorValue sv)
         {
             _sv_list.Insert(_sv_list.Count, sv);
-            this.BeginInvoke(new Action(bindDataGridToListOfValues));
+            if(_pump_sv.isPumping())
+                this.BeginInvoke(new Action(bindDataGridToListOfValues));
         }
         private void bindDataGridToListOfValues()
         {
@@ -74,6 +75,14 @@ namespace ProiectOOP
             }
 
             _pump_sv.setPatient(_selected_patient_code);
+
+            if (!_pump_sv.isPumping())
+                _pump_sv.StartPumping();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _pump_sv.StopPumping();
         }
     }
 }
