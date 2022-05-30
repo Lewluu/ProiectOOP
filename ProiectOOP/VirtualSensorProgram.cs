@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataStore;
 
 
 namespace ProiectOOP
@@ -15,6 +16,8 @@ namespace ProiectOOP
         [STAThread]
         static void Main()
         {
+            MySQL_DataStore.ConnectToDB();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DataPresentation());

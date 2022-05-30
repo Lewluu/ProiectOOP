@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectOOP", "ProiectOOP\ProiectOOP.csproj", "{3817D463-FCCE-42E8-B4F5-0790F7AC64EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{FD12D75F-853A-4F0F-8EA4-8C9C320253EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{73254222-F58B-4F5A-9BA1-7656F62FB7F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3817D463-FCCE-42E8-B4F5-0790F7AC64EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3817D463-FCCE-42E8-B4F5-0790F7AC64EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3817D463-FCCE-42E8-B4F5-0790F7AC64EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD12D75F-853A-4F0F-8EA4-8C9C320253EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD12D75F-853A-4F0F-8EA4-8C9C320253EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD12D75F-853A-4F0F-8EA4-8C9C320253EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD12D75F-853A-4F0F-8EA4-8C9C320253EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

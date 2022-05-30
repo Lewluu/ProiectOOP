@@ -17,12 +17,10 @@ namespace ProiectOOP
         private PatientCode _selected_patient_code;
         private PumpSensorValues _pump_sv;
         private int _period = 1;
-        private bool _update_grid;
         public DataPresentation()
         {
             InitializeComponent();
 
-            _update_grid = false;
             _selected_patient_code = PatientCode.None;
             _sv_list = new List<SensorValue>(); 
             _pump_sv = new PumpSensorValues(_period);
