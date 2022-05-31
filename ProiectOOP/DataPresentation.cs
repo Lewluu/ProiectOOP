@@ -1,44 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Timers;
+using DataStore;
 
 namespace ProiectOOP
 {
     public partial class DataPresentation : Form
     {
-        private List<SensorValue> _sv_list;
+        private List<SensorInput.SensorValue> _sv_list;
         private PatientCode _selected_patient_code;
-        private PumpSensorValues _pump_sv;
+        private SensorInput.PumpSensorValues _pump_sv;
         private int _period = 1;
         public DataPresentation()
         {
             InitializeComponent();
+            setNumberDecimalSeparator();
 
             _selected_patient_code = PatientCode.None;
-            _sv_list = new List<SensorValue>(); 
-            _pump_sv = new PumpSensorValues(_period);
+            _sv_list = new List<SensorInput.SensorValue>(); 
+            _pump_sv = new SensorInput.PumpSensorValues(_period);
 
             _pump_sv.StartPumping();
-            _pump_sv.newSensorValueEvent += new onNewSensorDelegate(onNewSensorHandler);
+            _pump_sv.newSensorValueEvent += new SensorInput.onNewSensorDelegate(onNewSensorHandler);
 
         }
-        private void onNewSensorHandler(SensorValue sv)
+        private void onNewSensorHandler(SensorInput.SensorValue sv)
         {
             _sv_list.Insert(_sv_list.Count, sv);
             if(_pump_sv.isPumping())
                 this.BeginInvoke(new Action(bindDataGridToListOfValues));
+
+            // add data to db
+            DataStore.MySQL_DataStore.addToDB(sv);
         }
         private void bindDataGridToListOfValues()
         {
             int row_id = this.dataGridView1.Rows.Add();
-            SensorValue sv = _sv_list[_sv_list.Count - 1];
+            SensorInput.SensorValue sv = _sv_list[_sv_list.Count - 1];
 
             this.dataGridView1.Rows[row_id].Cells[0].Value = sv.PatientCode.ToString();
             this.dataGridView1.Rows[row_id].Cells[1].Value = sv.Type.ToString();
@@ -81,6 +79,13 @@ namespace ProiectOOP
         private void button2_Click(object sender, EventArgs e)
         {
             _pump_sv.StopPumping();
+        }
+        private void setNumberDecimalSeparator()
+        {
+            System.Globalization.CultureInfo culture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            culture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
         }
     }
 }

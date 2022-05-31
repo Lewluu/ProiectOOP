@@ -61,8 +61,6 @@
     </Compile>
     <Compile Include="VirtualSensorProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PumpSensorValues.cs" />
-    <Compile Include="SensorValue.cs" />
     <EmbeddedResource Include="DataPresentation.resx">
       <DependentUpon>DataPresentation.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +93,10 @@
     <ProjectReference Include="..\DataStore\DataStore.csproj">
       <Project>{73254222-f58b-4f5a-9ba1-7656f62fb7f2}</Project>
       <Name>DataStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SensorInput\SensorInput.csproj">
+      <Project>{efb0b38b-2fd1-4659-ab71-7eed216af122}</Project>
+      <Name>SensorInput</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

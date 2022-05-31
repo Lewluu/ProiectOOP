@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
-namespace ProiectOOP
+namespace SensorInput
 {
     public delegate void onNewSensorDelegate(SensorValue sensorBaseArg);
-    internal class PumpSensorValues
+    public class PumpSensorValues
     {
         public event onNewSensorDelegate newSensorValueEvent;
         private Timer _timer_base;

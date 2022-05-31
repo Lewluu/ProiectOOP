@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-public enum SensorType {
+public enum SensorType
+{
     None,
     SkinTemperature,
     HeartRate,
@@ -23,9 +20,10 @@ public enum PatientCode
     Patient_6,
 }
 
-namespace ProiectOOP
+namespace SensorInput
 {
-    public class SensorValue{
+    public class SensorValue
+    {
         private SensorType _sensor_type;
         private double _value;
         private DateTime _timestamp;

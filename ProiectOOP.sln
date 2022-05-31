@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectOOP", "ProiectOOP\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{73254222-F58B-4F5A-9BA1-7656F62FB7F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorInput", "SensorInput\SensorInput.csproj", "{EFB0B38B-2FD1-4659-AB71-7EED216AF122}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73254222-F58B-4F5A-9BA1-7656F62FB7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB0B38B-2FD1-4659-AB71-7EED216AF122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB0B38B-2FD1-4659-AB71-7EED216AF122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB0B38B-2FD1-4659-AB71-7EED216AF122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB0B38B-2FD1-4659-AB71-7EED216AF122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

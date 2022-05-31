@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataStore;
 
@@ -22,7 +19,7 @@ namespace ProiectOOP
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DataPresentation());
         }
-        internal static void DisplaySensorValues(string headerText, SensorValue sv)
+        internal static void DisplaySensorValues(string headerText, SensorInput.SensorValue sv)
         {
             Console.WriteLine(headerText);
             Console.WriteLine("Type: " + sv.Type.ToString());

@@ -91,5 +91,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SensorInput\SensorInput.csproj">
+      <Project>{efb0b38b-2fd1-4659-ab71-7eed216af122}</Project>
+      <Name>SensorInput</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
