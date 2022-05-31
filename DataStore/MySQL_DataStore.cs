@@ -33,6 +33,7 @@ namespace DataStore
                 {
                     sql_str = "ALTER TABLE patient_data AUTO_INCREMENT = 1";
                     MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn);
+
                     sql_cmd.ExecuteNonQuery();
                 }
             }
