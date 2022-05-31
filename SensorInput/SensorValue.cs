@@ -45,10 +45,20 @@ namespace SensorInput
             get { return _timestamp; }
             set { _timestamp = value; }
         }
+        public string TimeStampDateString
+        {
+            get { return _timestamp.ToString("dd-MM-yy"); }
+            set { _timestamp = DateTime.ParseExact(value, "dd-MM-yy", CultureInfo.InvariantCulture); }
+        }
+        public string TimeStampTimeString
+        {
+            get { return _timestamp.ToString("hh|mm|ss"); }
+            set { _timestamp = DateTime.ParseExact(value, "HH:mm:ss", CultureInfo.InvariantCulture); }
+        }
         public string TimeStampString
         {
-            get { return _timestamp.ToString("dd/MM/yy HH:mm:ss"); }
-            set { _timestamp = DateTime.ParseExact(value, "dd/MM/yy HH:mm:ss", CultureInfo.InvariantCulture); }
+            get { return _timestamp.ToString("yyyy-MM-dd hh:mm:ss"); }
+            set { _timestamp = DateTime.ParseExact(value, "dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture); }
         }
         public PatientCode PatientCode
         {

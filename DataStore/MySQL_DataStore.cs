@@ -48,7 +48,10 @@ namespace DataStore
             try
             {
                 string sql_str = "INSERT INTO patient_data(patient_code, sensor_type, time_stamp, value) VALUES(" +
-                    "'" + sv.PatientCode.ToString() + "'" + ", " + "'" + sv.Type.ToString()+ "'" + ", " + "'" + sv.TimeStampString + "'" + ", " + sv.Value +
+                    "'" + sv.PatientCode.ToString() + "'" +
+                    ", " + "'" + sv.Type.ToString()+ "'" +
+                    ", " + "'" + sv.TimeStampString + "'" +
+                    ", " + sv.Value +
                     ")";
 
                 MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn);

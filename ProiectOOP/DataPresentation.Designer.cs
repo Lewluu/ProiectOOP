@@ -52,7 +52,7 @@ namespace ProiectOOP
             this._value});
             this.dataGridView1.Location = new System.Drawing.Point(32, 84);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(443, 407);
+            this.dataGridView1.Size = new System.Drawing.Size(469, 407);
             this.dataGridView1.TabIndex = 1;
             // 
             // _patient_code
@@ -67,6 +67,7 @@ namespace ProiectOOP
             // 
             // _timp_stamp
             // 
+            this._timp_stamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this._timp_stamp.HeaderText = "TimeStamp";
             this._timp_stamp.Name = "_timp_stamp";
             // 
