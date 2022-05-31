@@ -11,6 +11,7 @@ namespace ProiectOOP
         private PatientCode _selected_patient_code;
         private SensorInput.PumpSensorValues _pump_sv;
         private int _period = 1;
+        private MonthCalendar _month_calendar;
         public DataPresentation()
         {
             InitializeComponent();
@@ -86,6 +87,22 @@ namespace ProiectOOP
             culture.NumberFormat.NumberDecimalSeparator = ".";
 
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            _month_calendar = this.monthCalendar1;
+            // Console.WriteLine(this.monthCalendar1.SelectionStart.ToShortDateString());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToShortDateString());
         }
     }
 }

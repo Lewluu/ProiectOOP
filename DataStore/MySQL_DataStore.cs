@@ -1,11 +1,13 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace DataStore
 {
     public class MySQL_DataStore
     {
         static MySqlConnection _mysql_conn;
+        static List<SensorInput.SensorValue> _sv_list;
         public static void ConnectToDB()
         {
             string server = "localhost";
@@ -50,7 +52,7 @@ namespace DataStore
                 string sql_str = "INSERT INTO patient_data(patient_code, sensor_type, time_stamp, value) VALUES(" +
                     "'" + sv.PatientCode.ToString() + "'" +
                     ", " + "'" + sv.Type.ToString()+ "'" +
-                    ", " + "'" + sv.TimeStampString + "'" +
+                    ", " + "'" + sv.TimeStampDateString + "'" +
                     ", " + sv.Value +
                     ")";
 
@@ -61,6 +63,27 @@ namespace DataStore
             {
                 Console.WriteLine(ex);
             }
+        }
+        public static List<SensorInput.SensorValue> getSensorValues(string date)
+        {
+            try
+            {
+                string sql_str = "SELECT * FROM patient_data WHERE time_stamp =" + "'" + date + "'";
+                using (MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn))
+                {
+                    MySqlDataReader list_val = sql_cmd.ExecuteReader();
+                    while (list_val.Read())
+                    {
+                        Console.WriteLine(list_val.ToString());
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return _sv_list;
         }
         public static void closeConn()
         {
