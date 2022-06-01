@@ -33,7 +33,7 @@ namespace ProiectOOP
                 this.BeginInvoke(new Action(bindDataGridToListOfValues));
 
             // add data to db
-            DataStore.MySQL_DataStore.addToDB(sv);
+            MySQL_DataStore.addToDB(sv);
         }
         private void bindDataGridToListOfValues()
         {
@@ -106,9 +106,24 @@ namespace ProiectOOP
             List<SensorInput.SensorValue> sv_list = new List<SensorInput.SensorValue>();
             sv_list = MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
 
-            for(int i = 0; i < sv_list.Count; i++)
+            Console.WriteLine(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
+
+           /* for(int i = 0; i < sv_list.Count; i++)
             {
                 Console.WriteLine(sv_list[i].PatientCode + " " + sv_list[i].Type + " " + sv_list[i].TimeStampString + " " + sv_list[i].Value);
+            }*/
+
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView1.Refresh();
+
+            for(int i=0;i< sv_list.Count; i++)
+            {
+                this.dataGridView1.Rows.Add();
+
+                this.dataGridView1.Rows[i].Cells[0].Value = sv_list[i].PatientCode.ToString();
+                this.dataGridView1.Rows[i].Cells[1].Value = sv_list[i].Type.ToString();
+                this.dataGridView1.Rows[i].Cells[2].Value = sv_list[i].TimeStampString.ToString();
+                this.dataGridView1.Rows[i].Cells[3].Value = sv_list[i].Value.ToString();
             }
         }
 

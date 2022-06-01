@@ -7,11 +7,8 @@ namespace DataStore
     public class MySQL_DataStore
     {
         static MySqlConnection _mysql_conn;
-        static List<SensorInput.SensorValue> _sv_list;
         public static void ConnectToDB()
         {
-            _sv_list = new List<SensorInput.SensorValue>();
-
             string server = "localhost";
             string database = "patientdata";
             string username = "root";
@@ -73,6 +70,8 @@ namespace DataStore
         }
         public static List<SensorInput.SensorValue> getSensorValues(string date)
         {
+            List<SensorInput.SensorValue> sv_list = new List<SensorInput.SensorValue>();
+
             try
             {
                 _mysql_conn.Open();
@@ -101,19 +100,20 @@ namespace DataStore
                             sv.Type = (SensorType)data_reader["sensor_type"];
                             sv.Value = Convert.ToDouble(data_reader["value"]);
 
-                            _sv_list.Add(sv);
+                            sv_list.Add(sv);
                         }
-                        data_reader.Close();    
+                        data_reader.Close();
                     }
                 }
                 _mysql_conn.Close();
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
-            return _sv_list;
+            return sv_list;
         }
         public static void closeConn()
         {
