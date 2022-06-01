@@ -104,7 +104,7 @@ namespace ProiectOOP
         private void button3_Click(object sender, EventArgs e)
         {
             List<SensorInput.SensorValue> sv_list = new List<SensorInput.SensorValue>();
-            sv_list = MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
+            sv_list = MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"), _selected_patient2);
 
             Console.WriteLine(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
 

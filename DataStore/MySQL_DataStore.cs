@@ -68,14 +68,14 @@ namespace DataStore
                 Console.WriteLine(ex);
             }
         }
-        public static List<SensorInput.SensorValue> getSensorValues(string date)
+        public static List<SensorInput.SensorValue> getSensorValues(string date, PatientCode pc)
         {
             List<SensorInput.SensorValue> sv_list = new List<SensorInput.SensorValue>();
 
             try
             {
                 _mysql_conn.Open();
-                string sql_str = "SELECT * FROM patient_data WHERE time_stamp =" + "'" + date + "'";
+                string sql_str = "SELECT * FROM patient_data WHERE time_stamp =" + "'" + date + "' AND patient_code=" + (int)pc;
                 using (MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn))
                 {
                     MySqlDataReader data_reader = sql_cmd.ExecuteReader();
