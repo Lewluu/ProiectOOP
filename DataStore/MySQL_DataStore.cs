@@ -38,6 +38,8 @@ namespace DataStore
 
                     sql_cmd.ExecuteNonQuery();
                 }
+
+                _mysql_conn.Close();
             }
             catch (Exception ex)
             {
@@ -49,6 +51,7 @@ namespace DataStore
         {
             try
             {
+                _mysql_conn.Open();
                 string sql_str = "INSERT INTO patient_data(patient_code, sensor_type, time_stamp, value) VALUES(" +
                     "'" + sv.PatientCode.ToString() + "'" +
                     ", " + "'" + sv.Type.ToString()+ "'" +
@@ -58,6 +61,7 @@ namespace DataStore
 
                 MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn);
                 sql_cmd.ExecuteNonQuery();
+                _mysql_conn.Close();
             }
             catch(Exception ex)
             {
@@ -68,15 +72,28 @@ namespace DataStore
         {
             try
             {
-                string sql_str = "SELECT * FROM patient_data WHERE time_stamp =" + "'" + date + "'";
+                _mysql_conn.Open();
+                string new_date = date.Replace(".", "-");
+                string sql_str = "SELECT * FROM patient_data WHERE time_stamp =" + "'" + new_date + "'";
+                Console.WriteLine(sql_str);
                 using (MySqlCommand sql_cmd = new MySqlCommand(sql_str, _mysql_conn))
                 {
-                    MySqlDataReader list_val = sql_cmd.ExecuteReader();
-                    while (list_val.Read())
+                    MySqlDataReader data_reader = sql_cmd.ExecuteReader();
+                    if (data_reader.HasRows)
                     {
-                        Console.WriteLine(list_val.ToString());
+                        int count = data_reader.FieldCount;
+                        while (data_reader.Read())
+                        {
+                            /*for(int i = 0; i < count; i++)
+                            {
+                                Console.WriteLine(data_reader.GetString(i));
+                            }*/
+                            Console.WriteLine(data_reader["id"] +" "+ data_reader["patient_code"] + " " + data_reader["sensor_type"] + " " +data_reader["time_stamp"] +" "+ data_reader["value"]);
+                        }
+                        data_reader.Close();    
                     }
                 }
+                _mysql_conn.Close();
             }
             catch(Exception e)
             {

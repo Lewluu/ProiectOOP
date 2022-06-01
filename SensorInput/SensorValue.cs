@@ -47,7 +47,7 @@ namespace SensorInput
         }
         public string TimeStampDateString
         {
-            get { return _timestamp.ToString("yyyy.MM.dd"); }
+            get { return _timestamp.ToString("yyyy-MM-dd"); }
             set { _timestamp = DateTime.ParseExact(value, "dd-MM-yy", CultureInfo.InvariantCulture); }
         }
         public string TimeStampTimeString

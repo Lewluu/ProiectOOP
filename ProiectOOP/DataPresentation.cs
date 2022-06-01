@@ -102,7 +102,7 @@ namespace ProiectOOP
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToShortDateString());
+            MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
         }
     }
 }
