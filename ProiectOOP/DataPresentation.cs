@@ -9,6 +9,7 @@ namespace ProiectOOP
     {
         private List<SensorInput.SensorValue> _sv_list;
         private PatientCode _selected_patient_code;
+        private PatientCode _selected_patient2;
         private SensorInput.PumpSensorValues _pump_sv;
         private int _period = 1;
         private MonthCalendar _month_calendar;
@@ -102,7 +103,18 @@ namespace ProiectOOP
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
+            List<SensorInput.SensorValue> sv_list = new List<SensorInput.SensorValue>();
+            sv_list = MySQL_DataStore.getSensorValues(_month_calendar.SelectionStart.ToString("yyyy-MM-dd"));
+
+            for(int i = 0; i < sv_list.Count; i++)
+            {
+                Console.WriteLine(sv_list[i].PatientCode + " " + sv_list[i].Type + " " + sv_list[i].TimeStampString + " " + sv_list[i].Value);
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selected_patient2 = (PatientCode)comboBox2.SelectedIndex;
         }
     }
 }

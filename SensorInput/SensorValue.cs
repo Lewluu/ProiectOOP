@@ -52,7 +52,7 @@ namespace SensorInput
         }
         public string TimeStampTimeString
         {
-            get { return _timestamp.ToString("hh|mm|ss"); }
+            get { return _timestamp.ToString("hh:mm:ss"); }
             set { _timestamp = DateTime.ParseExact(value, "HH:mm:ss", CultureInfo.InvariantCulture); }
         }
         public string TimeStampString
